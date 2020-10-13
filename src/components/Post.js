@@ -1,0 +1,33 @@
+import React, { useState } from 'react'
+import { Card, Modal, Button } from 'antd'
+import {FileOutlined} from '@ant-design/icons'
+import OpenModal from './OpenModal'
+
+const Post = () => {
+
+    const { Meta } = Card
+    
+    return (
+        <>
+        <Card
+            style={{ width: 300, margin: 20 }}
+            cover={
+                <img
+                    alt="test"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                />
+            }
+            actions={[
+                <OpenModal />
+            ]}
+        >
+            <Meta 
+                title="Some Admin Stuff"
+                description="this is some content that will be displayed here regaurding the content of this card."
+            />
+        </Card>
+        </>
+    )
+}
+
+export default Post
