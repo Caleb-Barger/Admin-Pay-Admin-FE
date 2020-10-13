@@ -4,10 +4,10 @@ import './SiderDemo.css';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
+  StarOutlined,
+  EllipsisOutlined,
 } from '@ant-design/icons';
+import Post from './components/Post';
 
 const { Header, Sider, Content } = Layout;
 
@@ -22,20 +22,19 @@ class SiderDemo extends React.Component {
     });
   };
 
+  myArr = [1, 2, 3, 4, 5, 6]
+
   render() {
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed} theme="light">
           <div className="logo" />
           <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1" icon={<UserOutlined />}>
-              nav 1
+            <Menu.Item key="1" icon={<EllipsisOutlined />}>
+              Dashboard
             </Menu.Item>
-            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-              nav 2
-            </Menu.Item>
-            <Menu.Item key="3" icon={<UploadOutlined />}>
-              nav 3
+            <Menu.Item key="2" icon={<StarOutlined />}>
+              Collection
             </Menu.Item>
           </Menu>
         </Sider>
@@ -49,12 +48,15 @@ class SiderDemo extends React.Component {
           <Content
             className="site-layout-background"
             style={{
-              margin: '24px 16px',
-              padding: 24,
+              padding: 12,
               minHeight: 280,
             }}
           >
-            lorem ipsum dolem caleb james barger doing stuff
+              {this.myArr.map(i => {
+                return (
+                  <Post key={i} />
+                )
+              })}
           </Content>
         </Layout>
       </Layout>
