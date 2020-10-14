@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Typography } from 'antd';
 import './SiderDemo.css';
 import {
   MenuUnfoldOutlined,
@@ -9,11 +9,12 @@ import {
 } from '@ant-design/icons';
 import Post from './components/Post';
 
+const { Title } = Typography;
 const { Header, Sider, Content } = Layout;
 
 class SiderDemo extends React.Component {
   state = {
-    collapsed: false,
+    collapsed: true,
   };
 
   toggle = () => {
@@ -39,11 +40,12 @@ class SiderDemo extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
+          <Header className="site-layout-background" style={{ padding: "1rem"}}>
             {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: this.toggle,
             })}
+            <Title level={5}>Admin Pay Admin v0.0.3</Title>
           </Header>
           <Content
             className="site-layout-background"
