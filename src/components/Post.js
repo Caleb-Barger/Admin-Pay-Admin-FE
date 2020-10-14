@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { Card, Modal, Button } from 'antd'
-import {FileOutlined} from '@ant-design/icons'
+import React from 'react'
+import { Card } from 'antd'
 import OpenModal from './OpenModal'
 
 const Post = () => {
