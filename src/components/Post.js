@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from 'antd'
 import OpenModal from './OpenModal'
 
-const Post = () => {
+const Post = props => {
 
     const { Meta } = Card
     
@@ -17,7 +17,7 @@ const Post = () => {
                 />
             }
             actions={[
-                <OpenModal />
+                <OpenModal desc={props.desc} />
             ]}
         >
             <Meta 
