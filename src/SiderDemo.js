@@ -23,7 +23,17 @@ class SiderDemo extends React.Component {
     });
   };
 
-  myArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+  myArr = [
+    "Camden",
+    "Went",
+    "To",
+    "The",
+    "Store",
+    "And",
+    "Bought",
+    "Some",
+    "Milk"
+  ]
 
   render() {
     return (
@@ -45,7 +55,7 @@ class SiderDemo extends React.Component {
               className: 'trigger',
               onClick: this.toggle,
             })}
-            <Title level={5}>Admin Pay Admin v0.0.3</Title>
+            <Title level={5}>Admin Pay Admin v0.0.4</Title>
           </Header>
           <Content
             className="site-layout-background"
@@ -54,9 +64,9 @@ class SiderDemo extends React.Component {
               minHeight: 280,
             }}
           >
-              {this.myArr.map(i => {
+              {this.myArr.map((v, i) => {
                 return (
-                  <Post key={i} />
+                  <Post key={i} desc={v} />
                 )
               })}
           </Content>
