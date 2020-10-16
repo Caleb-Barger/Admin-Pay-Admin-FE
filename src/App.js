@@ -54,7 +54,7 @@ const App = props => {
               className: 'trigger',
               onClick: toggle,
             })}
-            <Title level={5}>Admin Pay Admin v0.0.4</Title>
+            <Title level={5}>Admin Pay Admin v0.0.5</Title>
           </Header>
           <Content
             className="site-layout-background"
