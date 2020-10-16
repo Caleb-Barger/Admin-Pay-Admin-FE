@@ -6,7 +6,7 @@ import {Provider} from 'react-redux'
 import reducer from './store/reducers'
 import ReactDOM from 'react-dom';
 import './index.css';
-import SiderDemo from './SiderDemo';
+import App from './App';
 import 'antd/dist/antd.css'; 
 
 const store = createStore(reducer, applyMiddleware(logger, thunk))
@@ -14,7 +14,7 @@ const store = createStore(reducer, applyMiddleware(logger, thunk))
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <SiderDemo />
+      <App />
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')
