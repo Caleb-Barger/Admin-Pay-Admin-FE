@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import {addItemToCollection} from '../store/actions'
 import { Button, Modal } from 'antd';
 import { StarTwoTone } from '@ant-design/icons'
 
@@ -11,6 +13,8 @@ class OpenModal extends React.Component {
     favorite: false,
     loading: false  
   };
+
+  // if the item is in the collection than it is a favorite.
 
   showModal = () => {
     this.setState({
@@ -36,9 +40,6 @@ class OpenModal extends React.Component {
     });
   };
 
-  // what buttons would I like to see on the card?
-  // probably one to add to the collection
-
   render() {
     return (
       <>
@@ -62,11 +63,10 @@ class OpenModal extends React.Component {
         >
           {/* Description will go here */}
           <p>{this.props.desc}</p>
-          <p></p>
         </Modal>
       </>
     );
   }
 }
 
-export default OpenModal
+export default connect(null, {addItemToCollection})(OpenModal)
