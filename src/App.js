@@ -14,6 +14,7 @@ import { Spinner } from './components/Spinner'
 
 const { Title } = Typography;
 const { Header, Sider, Content } = Layout;
+const APP_VERSION = 'v0.0.6'
 
 const App = props => {
 
@@ -52,7 +53,7 @@ const App = props => {
               className: 'trigger',
               onClick: toggle,
             })}
-            <Title level={5}>Admin Pay Admin v0.0.5</Title>
+            <Title level={5}>Admin Pay Admin { APP_VERSION }</Title>
           </Header>
           <Content
             className="site-layout-background"
