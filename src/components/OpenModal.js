@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import {addItemToCollection} from '../store/actions'
 import { Button, Modal } from 'antd';
@@ -7,66 +7,59 @@ import { StarTwoTone } from '@ant-design/icons'
 const favoriteTone = "#FCBF30"
 const regularTone = "#FEF2D6"
 
-class OpenModal extends React.Component {
-  state = { 
-    visible: false, 
-    favorite: false,
-    loading: false  
-  };
+const OpenModal = props => {
+    // favorite: false, // this will get passed down through post
 
-  // if the item is in the collection than it is a favorite.
+  const [visible, setVisible] = useState(false)
+  const favorite = true // TEMPORARY!
 
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  handleOk = e => {
-    this.setState({ loading: true })
-    setTimeout(() => {
-      this.setState({ loading: false, visible: false, favorite: true})
-    }, 3000) // simulating an axios call <----
-  };
-
-  handleRemove = e => {
-    this.setState({ visible: false, favorite: false, loading: false})
+  const showModal = () => {
+    setVisible(true)
   }
 
-  handleCancel = e => {
-    this.setState({
-      visible: false,
-      favorite: false
-    });
+  const handleOk = () => {
+    props.addItemToCollection(props.desc)
+    setVisible(false)
   };
 
-  render() {
+  const handleRemove = e => {
+    setVisible(false) // in the future this will dispatch a remove call 
+  }
+
+  const handleCancel = e => {
+    setVisible(false)
+  };
+
     return (
       <>
-        <StarTwoTone twoToneColor={this.state.favorite ? favoriteTone : regularTone} onClick={this.showModal}/>
+        <StarTwoTone twoToneColor={favorite ? favoriteTone : regularTone} onClick={showModal}/>
         <Modal
           title="Add this item to Collection?"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
+          visible={visible}
+          onOk={handleOk}
+          onCancel={handleCancel}
           footer={[
-            <Button key="back" onClick={this.handleCancel}>
+            <Button key="back" onClick={handleCancel}>
               Back
             </Button>,
-            <Button key="remove" onClick={this.handleRemove}>
+            <Button key="remove" onClick={handleRemove}>
               Remove from Collection
             </Button>,
-            <Button key="submit" loading={this.state.loading} onClick={this.handleOk}>
+            <Button key="submit" loading={props.isFetching} onClick={handleOk}>
               Add to Collection
             </Button>
           ]}
         >
-          {/* Description will go here */}
-          <p>{this.props.desc}</p>
+          <p>{props.desc}</p>
         </Modal>
       </>
     );
   }
+
+const mapStateToProps = state => {
+  return {
+   isFetching: state.r1.isFetching 
+  }
 }
 
-export default connect(null, {addItemToCollection})(OpenModal)
+export default connect(mapStateToProps, {addItemToCollection})(OpenModal)
