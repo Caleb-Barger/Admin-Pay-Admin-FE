@@ -22,19 +22,16 @@ const FAKE_FETCH_POSTS_RES = [
     "Jim",
     "Suhr",
     "Run 100"
-]
-
-const SHOULD_FAIL = false
+]; const SHOULD_FAIL = false
 
 export const addItemToCollection = item => {
     return (dispatch) => {
-        dispatch({
-            type: ADD_ITEM_TO_COLLECTION_START, payload: { error: "", isFetching: true }
-        })
-
-        // this is where the axios call will go for testing use a setTimeout
-        setTimeout(() => console.log(`FAKE AXIOS CALL FOR ${ADD_ITEM_TO_COLLECTION_START}`),
-        3000)
+        
+        setTimeout(() => {
+            dispatch({
+                type: ADD_ITEM_TO_COLLECTION_START, payload: { error: "", isFetching: true }
+            })
+        }, 3000)
 
         dispatch({
             type: ADD_ITEM_TO_COLLECTION_SUCCESS, 
