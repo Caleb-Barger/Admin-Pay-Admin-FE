@@ -52,13 +52,13 @@ export const addItemToCollection = item => {
 
 export const fetchPosts = () => {
     return (dispatch) => {
-        dispatch({
-            type: FETCH_POSTS_START, payload: { error: "", isFetching: true}
-        })
+        setTimeout(() => {
+            dispatch({
+                type: FETCH_POSTS_START, payload: { error: "", isFetching: true}
+            })
+        }, 3000)
 
-        // setTimeout(() => console.log(`FAKE AXIOS CALL FOR ${FETCH_POSTS_START}`),
-        // 3000)
-
+        
         dispatch({
             type: FETCH_POSTS_SUCCESS,
             payload: { error: "", isFetching: false, items: FAKE_FETCH_POSTS_RES }
