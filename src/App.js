@@ -10,6 +10,7 @@ import {
   EllipsisOutlined,
 } from '@ant-design/icons';
 import Post from './components/Post';
+import { Spinner } from './components/Spinner'
 
 const { Title } = Typography;
 const { Header, Sider, Content } = Layout;
@@ -17,7 +18,6 @@ const { Header, Sider, Content } = Layout;
 const App = props => {
 
   const [collapsed, setCollapsed] = useState(true)
-  const [loading, setLoading] = useState(false)
 
   const toggle = () => {
     setCollapsed(!collapsed)
@@ -29,11 +29,9 @@ const App = props => {
     //  if it sees that hasSubscribed/isOwned JSON property
 
     useEffect(() => {
-      fetchPosts()
-      if (props.isFetching !== loading) {
-        setLoading(props.isFetching)
-      }
-    }, [loading])
+      props.fetchPosts()
+      console.log(props.isFetching)
+    }, [props.items]) 
 
     return (
       <Layout>
@@ -64,10 +62,8 @@ const App = props => {
             }}
           >
               {props.isFetching ? props.items.map((v, i) => {
-                return (
-                  <Post key={i} desc={v} />
-                )
-              }) : <></>}
+                return <Post key={i} desc={v} />
+              }) : <Spinner />}
           </Content>
         </Layout>
       </Layout>
