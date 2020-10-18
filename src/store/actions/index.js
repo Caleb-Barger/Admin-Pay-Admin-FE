@@ -24,18 +24,16 @@ const FAKE_FETCH_POSTS_RES = [
     "Run 100"
 ]; const SHOULD_FAIL = false
 
-export const addItemToCollection = item => {
+export const addItemToCollection = items => {
     return (dispatch) => {
         
-        setTimeout(() => {
-            dispatch({
-                type: ADD_ITEM_TO_COLLECTION_START, payload: { error: "", isFetching: true }
-            })
-        }, 3000)
+        dispatch({
+            type: ADD_ITEM_TO_COLLECTION_START, payload: { error: "", isFetching: true }
+        })
 
         dispatch({
             type: ADD_ITEM_TO_COLLECTION_SUCCESS, 
-            payload: { error: "", isFetching: false, item: item}
+            payload: { error: "", isFetching: false, items: items}
         })
 
         if (SHOULD_FAIL) {
@@ -49,12 +47,11 @@ export const addItemToCollection = item => {
 
 export const fetchPosts = () => {
     return (dispatch) => {
-        setTimeout(() => {
-            dispatch({
-                type: FETCH_POSTS_START, payload: { error: "", isFetching: true}
-            })
-        }, 3000)
-
+        
+        dispatch({
+            type: FETCH_POSTS_START, payload: { error: "", isFetching: true}
+        })
+        
         
         dispatch({
             type: FETCH_POSTS_SUCCESS,
