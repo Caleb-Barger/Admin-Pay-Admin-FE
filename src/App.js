@@ -32,7 +32,7 @@ const App = props => {
     useEffect(() => {
       props.fetchPosts()
       console.log(props.isFetching)
-    }, [props.items]) 
+    }, []) 
 
     return (
       <Layout>
@@ -62,9 +62,12 @@ const App = props => {
               minHeight: 280,
             }}
           >
-              {props.isFetching ? props.items.map((v, i) => {
+              {/* {props.isFetching ? props.items.map((v, i) => {
                 return <Post key={i} desc={v} />
-              }) : <Spinner />}
+              }) : <Spinner />} */}
+              {props.items.map((v, i) => {
+                return <Post key={i} desc={v} />
+              })}
           </Content>
         </Layout>
       </Layout>
