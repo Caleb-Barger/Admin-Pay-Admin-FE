@@ -8,44 +8,68 @@ const favoriteTone = "#FCBF30"
 const regularTone = "#FEF2D6"
 
 const OpenModal = props => {
-    // favorite: false, // this will get passed down through post
-
-  const [visible, setVisible] = useState(false)
-  const favorite = true // TEMPORARY!
+  // const [visible, setVisible] = useState(false)
+  // const [activeAdd, setActiveAdd] = useState(false)
+  // const [activeRemove, setActiveRemove] = useState(true)
+  // const [favorite, setFavorite] = useState(false)
+  const [localState, setLocalState] = useState({
+    visible: false,
+    activeAdd: false,
+    activeRemove: true,
+    favorite: false
+  })
 
   const showModal = () => {
-    setVisible(true)
+    setLocalState({
+      ...localState,
+      visible: true
+    })
   }
 
   const handleOk = () => {
-    props.addItemToCollection(props.desc)
-    setVisible(false)
+    let isInCollection = props.collection.find(e => e === props.desc)
+    if (!isInCollection) {
+      props.collection.push(props.desc)
+      props.addItemToCollection(props.collection)
+      setLocalState({
+        ...localState,
+        favorite: true,
+        activeAdd: !localState.activeAdd,
+        activeRemove: !localState.activeRemove
+      })
+    } 
   };
 
   const handleRemove = e => {
-    setVisible(false) // in the future this will dispatch a remove call 
+    setLocalState({
+      ...localState,
+      visible: false // in the future this will dispatch a remove item call
+    })
   }
 
   const handleCancel = e => {
-    setVisible(false)
+    setLocalState({
+      ...localState,
+      visible: false
+    })
   };
 
     return (
       <>
-        <StarTwoTone twoToneColor={favorite ? favoriteTone : regularTone} onClick={showModal}/>
+        <StarTwoTone twoToneColor={localState.favorite ? favoriteTone : regularTone} onClick={showModal}/>
         <Modal
           title="Add this item to Collection?"
-          visible={visible}
+          visible={localState.visible}
           onOk={handleOk}
           onCancel={handleCancel}
           footer={[
             <Button key="back" onClick={handleCancel}>
               Back
             </Button>,
-            <Button key="remove" onClick={handleRemove}>
+            <Button key="remove" disabled={localState.activeRemove} type="danger" onClick={handleRemove}>
               Remove from Collection
             </Button>,
-            <Button key="submit" loading={props.isFetching} onClick={handleOk}>
+            <Button key="submit" disabled={localState.activeAdd} type="primary" onClick={handleOk}>
               Add to Collection
             </Button>
           ]}
@@ -58,7 +82,7 @@ const OpenModal = props => {
 
 const mapStateToProps = state => {
   return {
-   isFetching: state.r1.isFetching 
+   collection: state.r1.collection
   }
 }
 
