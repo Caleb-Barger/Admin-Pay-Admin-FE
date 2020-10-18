@@ -36,7 +36,7 @@ export const myReducer = (state=initalState, action) => {
                 ...state,
                 error: action.payload.error,
                 isFetching: action.payload.isFetching,
-                collection: state.collection.push(action.payload.item)
+                collection: action.payload.items 
             }
         case ADD_ITEM_TO_COLLECTION_START:
             return {
