@@ -73,6 +73,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {fetchPosts})(Dashboard)
-
-
-
