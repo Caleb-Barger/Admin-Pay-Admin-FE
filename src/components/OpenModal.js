@@ -8,10 +8,6 @@ const favoriteTone = "#FCBF30"
 const regularTone = "#FEF2D6"
 
 const OpenModal = props => {
-  // const [visible, setVisible] = useState(false)
-  // const [activeAdd, setActiveAdd] = useState(false)
-  // const [activeRemove, setActiveRemove] = useState(true)
-  // const [favorite, setFavorite] = useState(false)
   const [localState, setLocalState] = useState({
     visible: false,
     activeAdd: false,
