@@ -1,33 +1,30 @@
+// ###############################################
 import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux'
-import {fetchPosts} from './store/actions'
+import { Route } from 'react-router-dom'
 import { Layout, Menu, Typography } from 'antd';
-import './App.css';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   StarOutlined,
   EllipsisOutlined,
 } from '@ant-design/icons';
+// ###############################################
+import {connect} from 'react-redux'
+import {fetchPosts} from './store/actions'
+// ###############################################
+import './App.css';
 import Post from './components/Post';
-import { Spinner } from './components/Spinner'
 
 const { Title } = Typography;
 const { Header, Sider, Content } = Layout;
 const APP_VERSION = 'v0.0.6'
 
 const App = props => {
-
   const [collapsed, setCollapsed] = useState(true)
 
   const toggle = () => {
     setCollapsed(!collapsed)
   };
-
-  // the collection is all items that hasSubscribed or something like ownend 
-  // when this component mounts dispatch an action call that returns all items
-    // in the background the action call will go through each item and add it to the collection
-    //  if it sees that hasSubscribed/isOwned JSON property
 
     useEffect(() => {
       props.fetchPosts()
@@ -49,7 +46,7 @@ const App = props => {
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: "1rem"}}>
-            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, { // TODO: fix React Strict Mode
               className: 'trigger',
               onClick: toggle,
             })}
@@ -62,12 +59,9 @@ const App = props => {
               minHeight: 280,
             }}
           >
-              {/* {props.isFetching ? props.items.map((v, i) => {
-                return <Post key={i} desc={v} />
-              }) : <Spinner />} */}
-              {props.items.map((v, i) => {
-                return <Post key={i} desc={v} />
-              })}
+            {props.items.map((v, i) => {
+              return <Post key={i} desc={v} />
+            })}
           </Content>
         </Layout>
       </Layout>
