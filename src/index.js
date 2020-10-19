@@ -8,14 +8,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import 'antd/dist/antd.css'; 
+import {BrowserRouter as Router} from 'react-router-dom'
 
 const store = createStore(reducer, applyMiddleware(logger, thunk))
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
+    <Router>
       <App />
-    </React.StrictMode>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
