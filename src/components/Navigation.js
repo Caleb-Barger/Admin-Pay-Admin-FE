@@ -7,17 +7,31 @@ import {
 import {connect} from 'react-redux'
 import {fetchPosts} from '../store/actions'
 import '../App.css'
-import Post from './Post'
 import SiteHeader from './SiteHeader'
 import Dashboard from './Dashboard'
 
-const {Sider } = Layout
+const {Sider} = Layout
 
-const SiderNav = props => {
+const Navigation = props => {
     const [collapsed, setCollapsed] = useState(true)
+    const [view, setView] = useState(<Dashboard />)
 
     const toggle = () => {
         setCollapsed(!collapsed)
+    }
+
+    const navHandler = e => {
+      console.log(e)
+      switch(e.key) {
+        case '1':
+          setView(<Dashboard />)
+          break
+        case '2':
+          setView(<>COLLECTION VIEW</>)
+          break
+        default:
+          setView(<>SOMETHING BROKE!</>)
+      }
     }
 
     useEffect(() => {
@@ -29,20 +43,26 @@ const SiderNav = props => {
       <Layout>
         <Sider trigger={null} collapsible collapsed={collapsed} theme="light">
           <div className="logo" />
-          <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1" icon={<EllipsisOutlined />}>
+          <Menu theme="light" mode="inline" 
+            defaultSelectedKeys={['1']}
+            onClick={navHandler}>
+            <Menu.Item 
+              key="1" icon={<EllipsisOutlined />}
+            >
               Dashboard
             </Menu.Item>
-            <Menu.Item key="2" icon={<StarOutlined />}>
+            <Menu.Item 
+              key="2" icon={<StarOutlined />}
+            >
               Collection
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
             <SiteHeader 
-                APP_VERSION={props.APP_VERSION} 
-                toggle={toggle} collapsed={collapsed}/>
-            <Dashboard /> 
+                toggle={toggle} collapsed={collapsed}
+            />
+            {view}
         </Layout>
       </Layout>
     );
@@ -57,4 +77,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {fetchPosts})(SiderNav)
+export default connect(mapStateToProps, {fetchPosts})(Navigation)
