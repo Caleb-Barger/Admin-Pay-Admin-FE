@@ -1,16 +1,17 @@
-import { act } from 'react-dom/test-utils'
 import {FETCH_POSTS_SUCCESS, FETCH_POSTS_START, FETCH_POSTS_FAIL,
         ADD_ITEM_TO_COLLECTION_SUCCESS, ADD_ITEM_TO_COLLECTION_START, ADD_ITEM_TO_COLLECTION_FAIL,
+        SET_KARMA_SUCCESS
 } from '../actions'
 
 const initalState = {
+    karmaCount: 0,
     collection: [],
     items: [],
     error: "",
     isFetching: false
 }
 
-export const myReducer = (state=initalState, action) => {
+export const r1 = (state=initalState, action) => {
     switch(action.type) {
         case FETCH_POSTS_SUCCESS:
             return {
@@ -49,6 +50,14 @@ export const myReducer = (state=initalState, action) => {
                 ...state,
                 error: action.payload.error,
                 isFetching: action.payload.isFetching
+            }
+
+        case SET_KARMA_SUCCESS:
+            return {
+                ...state,
+                error: action.payload.error,
+                isFetching: action.payload.isFetching,
+                karmaCount: action.payload.karma
             }
         default:
             return {
