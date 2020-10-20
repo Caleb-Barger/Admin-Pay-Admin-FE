@@ -20,6 +20,8 @@ const OpenModal = props => {
     if (!inCollection) return
     setLocalState({
       ...localState,
+      activeAdd: true,
+      activeRemove: false,
       favorite: true
     })
   }, [localState.favorite])
