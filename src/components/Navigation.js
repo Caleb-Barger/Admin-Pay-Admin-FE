@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import {fetchPosts} from '../store/actions'
 import '../App.css'
 import SiteHeader from './SiteHeader'
+import Collection from './Collection'
 import Dashboard from './Dashboard'
 
 const {Sider} = Layout
@@ -27,10 +28,10 @@ const Navigation = props => {
           setView(<Dashboard />)
           break
         case '2':
-          setView(<>COLLECTION VIEW</>)
+          setView(<Collection />)
           break
         default:
-          setView(<>SOMETHING BROKE!</>)
+          setView(<Dashboard />)
       }
     }
 

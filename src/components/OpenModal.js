@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import {addItemToCollection} from '../store/actions'
 import { Button, Modal } from 'antd';
@@ -15,6 +15,17 @@ const OpenModal = props => {
     favorite: false
   })
 
+  useEffect(() => {
+    let inCollection = props.collection.find(e => e === props.desc)
+    if (!inCollection) return
+    setLocalState({
+      ...localState,
+      activeAdd: true,
+      activeRemove: false,
+      favorite: true
+    })
+  }, [localState.favorite])
+
   const showModal = () => {
     setLocalState({
       ...localState,
@@ -29,9 +40,9 @@ const OpenModal = props => {
       props.addItemToCollection(props.collection)
       setLocalState({
         ...localState,
-        favorite: true,
         activeAdd: !localState.activeAdd,
-        activeRemove: !localState.activeRemove
+        activeRemove: !localState.activeRemove,
+        favorite: true
       })
     } 
   };

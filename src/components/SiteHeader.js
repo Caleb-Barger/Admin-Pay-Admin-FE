@@ -8,7 +8,7 @@ import {
 const {Title} = Typography
 const {Header} = Layout
 
-const APP_VERSION = "v0.0.9"
+const APP_VERSION = "v0.1.0"
 
 const SiteHeader = props => {
     return (
