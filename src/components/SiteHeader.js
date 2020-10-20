@@ -8,6 +8,8 @@ import {
 const {Title} = Typography
 const {Header} = Layout
 
+const APP_VERSION = "v0.0.8"
+
 const SiteHeader = props => {
     return (
         <Header className="site-layout-background" style={{ padding: "1rem"}}>
@@ -15,7 +17,7 @@ const SiteHeader = props => {
                 className: 'trigger',
                 onClick: props.toggle,
             })}
-        <Title level={5}>Admin Pay Admin { props.APP_VERSION }</Title>
+        <Title level={5}>Admin Pay Admin { APP_VERSION }</Title>
         </Header>
     )
 }
