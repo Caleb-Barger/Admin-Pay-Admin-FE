@@ -4,7 +4,7 @@ import {FETCH_POSTS_SUCCESS, FETCH_POSTS_START, FETCH_POSTS_FAIL,
 } from '../actions'
 
 const initalState = {
-    karmaCount: 0,
+    karma : 5,
     collection: [],
     items: [],
     error: "",
@@ -57,7 +57,7 @@ export const r1 = (state=initalState, action) => {
                 ...state,
                 error: action.payload.error,
                 isFetching: action.payload.isFetching,
-                karmaCount: action.payload.karma
+                karma : action.payload.karma
             }
         default:
             return {
