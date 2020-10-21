@@ -14,10 +14,6 @@ const APP_VERSION = "v0.1.1"
 
 const SiteHeader = props => {
 
-    useEffect(() => {
-        props.setKarma(100)
-    }, []) // for now pretend you have 100 karma to spend
-
     return (
         <Header className="site-layout-background" style={{ padding: "1rem"}}>
             {React.createElement(props.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, { // TODO: fix React Strict Mode
@@ -25,14 +21,14 @@ const SiteHeader = props => {
                 onClick: props.toggle,
             })}
         <Title level={5}>Admin Pay Admin { APP_VERSION }</Title>
-        <Text>Your Karma: {props.karma}</Text>
+        <Text code>Your Karma: {props.karma}</Text>
         </Header>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        karma: state.r1.karmaCount
+        karma: state.r1.karma
     }
 }
 
