@@ -13,7 +13,7 @@ const Post = props => {
             cover={
                 <img
                     alt="test"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                    src="https://picsum.photos/200/"
                 />
             }
             actions={[

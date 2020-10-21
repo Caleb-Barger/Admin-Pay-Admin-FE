@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {myReducer as r1} from './myReducer'
+import {r1} from './r1'
 
 const reducer = combineReducers({r1})
 

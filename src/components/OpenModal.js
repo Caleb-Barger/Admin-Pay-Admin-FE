@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
-import {addItemToCollection} from '../store/actions'
+import {addItemToCollection, setKarma} from '../store/actions'
 import { Button, Modal } from 'antd';
 import { StarTwoTone } from '@ant-design/icons'
 
@@ -14,10 +14,14 @@ const OpenModal = props => {
     activeRemove: true,
     favorite: false
   })
+  
+  const itemInCollection = () => props.collection.find(e => e === props.desc) ? true : false
+  const hasEnoughKarma = () => props.karma > 0 ? true : false 
 
   useEffect(() => {
-    let inCollection = props.collection.find(e => e === props.desc)
-    if (!inCollection) return
+    if (!itemInCollection()) {
+      return
+    } 
     setLocalState({
       ...localState,
       activeAdd: true,
@@ -29,14 +33,15 @@ const OpenModal = props => {
   const showModal = () => {
     setLocalState({
       ...localState,
-      visible: true
+      visible: true,
+      activeAdd: !hasEnoughKarma()
     })
   }
 
   const handleOk = () => {
-    let isInCollection = props.collection.find(e => e === props.desc)
-    if (!isInCollection) {
+    if (!itemInCollection()) {
       props.collection.push(props.desc)
+      props.setKarma(props.karma-1)
       props.addItemToCollection(props.collection)
       setLocalState({
         ...localState,
@@ -89,8 +94,9 @@ const OpenModal = props => {
 
 const mapStateToProps = state => {
   return {
-   collection: state.r1.collection
+   collection: state.r1.collection,
+   karma: state.r1.karma
   }
 }
 
-export default connect(mapStateToProps, {addItemToCollection})(OpenModal)
+export default connect(mapStateToProps, {addItemToCollection, setKarma})(OpenModal)
