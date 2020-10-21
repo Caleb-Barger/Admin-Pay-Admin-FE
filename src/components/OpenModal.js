@@ -34,7 +34,7 @@ const OpenModal = props => {
     setLocalState({
       ...localState,
       visible: true,
-      activeAdd: !hasEnoughKarma()
+      activeAdd: hasEnoughKarma() && !itemInCollection() ? false : true 
     })
   }
 

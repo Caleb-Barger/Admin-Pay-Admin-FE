@@ -10,7 +10,7 @@ import {setKarma} from '../store/actions'
 const {Title, Text} = Typography
 const {Header} = Layout
 
-const APP_VERSION = "v0.1.1"
+const APP_VERSION = "v0.1.2"
 
 const SiteHeader = props => {
 

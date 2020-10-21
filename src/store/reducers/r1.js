@@ -4,7 +4,7 @@ import {FETCH_POSTS_SUCCESS, FETCH_POSTS_START, FETCH_POSTS_FAIL,
 } from '../actions'
 
 const initalState = {
-    karma : 5,
+    karma : 2,
     collection: [],
     items: [],
     error: "",
