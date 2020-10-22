@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {Layout, Typography} from 'antd'
 import {
     MenuFoldOutlined,
@@ -15,13 +15,15 @@ const APP_VERSION = "v0.1.2"
 const SiteHeader = props => {
 
     return (
-        <Header className="site-layout-background" style={{ padding: "1rem"}}>
-            {React.createElement(props.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, { // TODO: fix React Strict Mode
+        <Header className="site-layout-header">
+            {React.createElement(props.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, { 
                 className: 'trigger',
                 onClick: props.toggle,
             })}
-        <Title level={5}>Admin Pay Admin { APP_VERSION }</Title>
-        <Text code>Your Karma: {props.karma}</Text>
+            <div className="header-info">
+            <Text>Admin Pay Admin { APP_VERSION }</Text>
+            <Text keyboard>Your Karma: {props.karma}</Text>
+            </div>
         </Header>
     )
 }
