@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import {Layout, Typography} from 'antd'
 import {
     MenuFoldOutlined,
@@ -7,10 +8,10 @@ import {
 import { connect } from 'react-redux'
 import {setKarma} from '../store/actions'
 
-const {Title, Text} = Typography
+const {Text} = Typography
 const {Header} = Layout
 
-const APP_VERSION = "v0.1.2"
+const APP_VERSION = "v0.1.3"
 
 const SiteHeader = props => {
 
@@ -20,10 +21,10 @@ const SiteHeader = props => {
                 className: 'trigger',
                 onClick: props.toggle,
             })}
-            <div className="header-info">
+            {/* <div className="header-info"> */}
             <Text>Admin Pay Admin { APP_VERSION }</Text>
             <Text keyboard>Your Karma: {props.karma}</Text>
-            </div>
+            {/* </div> */}
         </Header>
     )
 }
