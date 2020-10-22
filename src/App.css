@@ -22,3 +22,12 @@
     flex-flow: row wrap;
     justify-content: space-between;
   }
+
+  .site-layout .site-layout-header {
+    background: #fff;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 1rem;
+    /* border: 1px solid red; */
+  }
