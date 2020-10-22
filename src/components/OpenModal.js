@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import {addItemToCollection, setKarma} from '../store/actions'
+import {axiosDownload} from '../utils/axiosDownload'
 import { Button, Modal } from 'antd';
 import { StarTwoTone } from '@ant-design/icons'
 
@@ -81,6 +82,7 @@ const OpenModal = props => {
             <Button key="remove" disabled={localState.activeRemove} type="danger" onClick={handleRemove}>
               Remove from Collection
             </Button>,
+            <Button onClick={axiosDownload}>Test Download</Button>,
             <Button key="submit" disabled={localState.activeAdd} type="primary" onClick={handleOk}>
               Add to Collection
             </Button>
