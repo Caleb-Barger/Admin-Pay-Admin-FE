@@ -79,13 +79,13 @@ const OpenModal = props => {
             <Button key="back" onClick={handleCancel}>
               Back
             </Button>,
-            <Button key="remove" disabled={localState.activeRemove} type="danger" onClick={handleRemove}>
+            itemInCollection() ? <Button key="remove" disabled={localState.activeRemove} type="danger" onClick={handleRemove}>
               Remove from Collection
-            </Button>,
-            <Button onClick={axiosDownload}>Test Download</Button>,
-            <Button key="submit" disabled={localState.activeAdd} type="primary" onClick={handleOk}>
+            </Button>: <></>,
+            itemInCollection() ? <Button onClick={axiosDownload}>Test Download</Button>: <></>,
+            !itemInCollection() ? <Button key="submit" disabled={localState.activeAdd} type="primary" onClick={handleOk}>
               Add to Collection
-            </Button>
+            </Button> : <></>
           ]}
         >
           <p>{props.desc}</p>
