@@ -7,6 +7,11 @@ export const ADD_ITEM_TO_COLLECTION_SUCCESS = "ADD_ITEM_TO_COLLECTION_SUCCESS"
 export const ADD_ITEM_TO_COLLECTION_START = "ADD_ITEM_TO_COLLECTION_START"
 export const ADD_ITEM_TO_COLLECTION_FAIL = "ADD_ITEM_TO_COLLECTION_FAIL"
 // #############################################################
+export const REMOVE_ITEM_FROM_COLLECTION_SUCCESS = "REMOVE_ITEM_FROM_COLLECTION_SUCCESS"
+export const REMOVE_ITEM_FROM_COLLECTION_START = "REMOVE_ITEM_FROM_COLLECTION_START"
+export const REMOVE_ITEM_FROM_COLLECTION_FAIL = "REMOVE_ITEM_FROM_COLLECTION_FAIL"
+// #############################################################
+
 export const SET_KARMA_SUCCESS = "SET_KARMA_SUCCESS"
 
 // !SHOULD FAIL & THE FAKE_FETCH_POSTS_RES ARE TEMPORARY
@@ -22,7 +27,7 @@ const FAKE_FETCH_POSTS_RES = [
     "KARMA FOR ME",
     "PLS get",
     "Great admin resource!"
-]; const SHOULD_FAIL = false
+]; const SHOULD_FAIL = false 
 
 export const addItemToCollection = items => {
     return (dispatch) => {
@@ -37,6 +42,23 @@ export const addItemToCollection = items => {
             dispatch({
                 type: ADD_ITEM_TO_COLLECTION_FAIL, payload: { error: `!ERROR ${ADD_ITEM_TO_COLLECTION_FAIL}!`, isFetching: false}
             })       
+        }
+    }
+}
+
+export const removeItemFromCollection = item => {
+    return dispatch => {
+        dispatch({
+            type: REMOVE_ITEM_FROM_COLLECTION_START, payload: { error: "", isFetching: true }
+        })
+        dispatch({
+            type: ADD_ITEM_TO_COLLECTION_SUCCESS,
+            payload: {error: "", isFetching: false, item: item}
+        })
+        if (SHOULD_FAIL) {
+            dispatch({
+                type: REMOVE_ITEM_FROM_COLLECTION_FAIL, payload: { error: `!ERROR ${REMOVE_ITEM_FROM_COLLECTION_FAIL}!`, isFetching: false}
+            })
         }
     }
 }

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
-import {addItemToCollection, setKarma} from '../store/actions'
+import {addItemToCollection, setKarma, removeItemFromCollection} from '../store/actions'
 import {axiosDownload} from '../utils/axiosDownload'
 import { Button, Modal } from 'antd';
 import { StarTwoTone } from '@ant-design/icons'
@@ -53,10 +53,19 @@ const OpenModal = props => {
     } 
   };
 
-  const handleRemove = e => {
+  const handleRemove = () => {
+    console.log(props.collection)
+    if (itemInCollection()) {
+      props.collection.map((val, i) => {
+        if (val == props.desc) delete props.collection[i] 
+      })
+    }
+    console.log(props.collection)
+    // props.removeItemFromCollection(props.collection)
     setLocalState({
       ...localState,
-      visible: false // in the future this will dispatch a remove item call
+      activeAdd: hasEnoughKarma() ? !localState.activeAdd : localState.activeAdd,
+      favorite: false
     })
   }
 
@@ -79,13 +88,13 @@ const OpenModal = props => {
             <Button key="back" onClick={handleCancel}>
               Back
             </Button>,
-            <Button key="remove" disabled={localState.activeRemove} type="danger" onClick={handleRemove}>
+            itemInCollection() ? <Button key="remove" disabled={localState.activeRemove} type="danger" onClick={handleRemove}>
               Remove from Collection
-            </Button>,
-            <Button onClick={axiosDownload}>Test Download</Button>,
-            <Button key="submit" disabled={localState.activeAdd} type="primary" onClick={handleOk}>
+            </Button>: <></>,
+            itemInCollection() ? <Button onClick={axiosDownload}>Test Download</Button>: <></>,
+            !itemInCollection() ? <Button key="submit" disabled={localState.activeAdd} type="primary" onClick={handleOk}>
               Add to Collection
-            </Button>
+            </Button> : <></>
           ]}
         >
           <p>{props.desc}</p>
@@ -101,4 +110,5 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {addItemToCollection, setKarma})(OpenModal)
+export default connect(mapStateToProps, { removeItemFromCollection,
+  addItemToCollection, setKarma})(OpenModal)

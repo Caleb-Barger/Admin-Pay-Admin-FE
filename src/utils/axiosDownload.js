@@ -9,7 +9,7 @@ export const axiosDownload = () => {
         const url = window.URL.createObjectURL(new Blob([res.data]));
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', 'file.pdf');
+        link.setAttribute('download', 'file.jpg');
         document.body.appendChild(link);
         link.click();
     })
