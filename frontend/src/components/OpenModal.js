@@ -54,14 +54,11 @@ const OpenModal = props => {
   };
 
   const handleRemove = () => {
-    console.log(props.collection)
     if (itemInCollection()) {
       props.collection.map((val, i) => {
         if (val == props.desc) delete props.collection[i] 
       })
     }
-    console.log(props.collection)
-    // props.removeItemFromCollection(props.collection)
     setLocalState({
       ...localState,
       activeAdd: hasEnoughKarma() ? !localState.activeAdd : localState.activeAdd,

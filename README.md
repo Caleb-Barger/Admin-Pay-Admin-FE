@@ -1,2 +1,2 @@
-# Admin-Pay-Admin-FE
-Admin pay Admin Client application
+### Admin-Pay-Admin Centeral Repo :D
+...readme in progress...
